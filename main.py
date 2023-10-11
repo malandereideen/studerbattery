@@ -12,7 +12,7 @@ try:
 except:
     import socket
     
-timeout = 60
+timeout = 90
 
 wlan = wifimgr.get_connection()
 
