@@ -31,7 +31,7 @@ oled_width = 128
 oled_height = 64
 oled = ssd1306.SSD1306_I2C(oled_width, oled_height, i2c)
 #Abfrageinterval
-timeout = 30
+timeout = 300
 timezone = 10800
 def display_clean():
     oled.fill(0)
