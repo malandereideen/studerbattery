@@ -1,1 +1,1 @@
-printe("Hallo du da")
+print("Hallo du da")
