@@ -17,22 +17,23 @@ import requests
 import ujson
 #API Studer
 from geheim import *
+from init import *
 
 #Socket
 try:
     import usocket as socket
 except:
     import socket
+    
 #WLAN Verbindung herstellen
-wlan = wifimgr.get_connection()    
+wlan = wifimgr.get_connection()
+
 #Display initialisieren
 i2c = I2C(0, scl=Pin(22), sda=Pin(23))
 oled_width = 128
 oled_height = 64
 oled = ssd1306.SSD1306_I2C(oled_width, oled_height, i2c)
-#Abfrageinterval
-timeout = 300
-timezone = 10800
+
 def display_clean():
     oled.fill(0)
     oled.show()
@@ -109,24 +110,20 @@ def time_text(seconds):
 
 def get_battery():
     Headers = {"PHASH":std_pass,"UHASH":std_mail,}
-    response = requests.get("https://api.studer-innotec.com/api/v1/installation/synoptic/" + std_uid,headers=Headers)
+    response = requests.get(studer_api_url + std_uid,headers=Headers)
     parsed = ujson.loads(response.content)
     battery = parsed["battery"]
     mywert = battery["soc"]
     mywert = int(mywert)
     return mywert
-    
-    
-
+  
 #Display leeren
 display_clean()
 sleep(1)
+
 #Firmware auf Updates prüfen
-firmware_url = "https://raw.githubusercontent.com/malandereideen/studerbattery/main/"
 ota_updater = OTAUpdater(firmware_url,"main.py","boot.py")
 ota_updater.download_and_install_update_if_available()
-
-
 
 while True:
     mybattery = 0
