@@ -6,7 +6,7 @@ from geheim import *
 import display
 import time
 from ota import OTAUpdater
-
+print("Hallo")
 try:
     import usocket as socket
 except:
