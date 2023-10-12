@@ -282,7 +282,6 @@ def start(port=80):
     server_socket = socket.socket()
     server_socket.bind(addr)
     server_socket.listen(1)
-    display.wlan_manage()
     print('Connect to WiFi ssid ' + ap_ssid + ', default password: ' + ap_password)
     print('and access the ESP via your favorite web browser at 192.168.4.1.')
     print('Listening on:', addr)

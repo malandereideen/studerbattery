@@ -25,9 +25,6 @@ try:
 except:
     import socket
     
-#WLAN Verbindung herstellen
-wlan = wifimgr.get_connection()
-
 #Display initialisieren
 i2c = I2C(0, scl=Pin(22), sda=Pin(23))
 oled_width = 128
@@ -92,6 +89,11 @@ def display_ladung(wert):
         for j in range(13):
             oled.pixel(15+i,31+j,1)
     oled.show()
+
+display_wlan_manage()
+
+#WLAN Verbindung herstellen
+wlan = wifimgr.get_connection()
 
 def get_zeit():
         try:
