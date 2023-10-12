@@ -1,1 +1,1 @@
-printe("Hallo du da drüben")
+printe("Hallo du da")
